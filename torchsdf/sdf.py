@@ -32,7 +32,11 @@ def index_vertices_by_faces(vertices_features, faces):
 
 
 def compute_sdf(pointclouds, face_vertices):
-    return _UnbatchedTriangleDistanceCuda.apply(pointclouds, face_vertices)
+    if pointclouds.is_cuda:
+        return _UnbatchedTriangleDistanceCuda.apply(pointclouds, face_vertices)
+    else:
+        data = _UnbatchedTriangleDistanceCuda.apply(pointclouds.cuda(), face_vertices.cuda())
+        return [d.cpu() for d in data]
 
 
 class _UnbatchedTriangleDistanceCuda(torch.autograd.Function):
