@@ -23,7 +23,7 @@
   /* Code block avoids redefinition of cudaError_t error */ \
   do { \
     cudaError_t error = condition; \
-    CHECK_EQ(error, cudaSuccess) << " " << cudaGetErrorString(error); \
+    TORCH_CHECK_EQ(error, cudaSuccess) << " " << cudaGetErrorString(error); \
   } while (0)
 
 #define PRIVATE_CASE_TYPE(ENUM_TYPE, TYPE, TYPE_NAME, ...) \
