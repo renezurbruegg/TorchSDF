@@ -1,0 +1,4 @@
+include version.txt
+include LICENSE
+include README.md
+recursive-include torchsdf *.h *.hpp *.cpp *.cu

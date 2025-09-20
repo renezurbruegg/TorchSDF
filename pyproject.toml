@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68", "wheel", "packaging"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "torchsdf"
+version = "0.0.1"  
+license = { file = "LICENSE" }  # <-- move license metadata here
+requires-python = ">=3.9"
+# dependencies = [...]  # runtime deps only (NOT torch for build)
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["torchsdf*"]
+
+[tool.setuptools.package-data]
+torchsdf = ["**/*.yaml", "**/*.yml", "**/*.json", "**/*.txt", "**/*.pt", "**/*.onnx"]
